@@ -150,6 +150,23 @@ function updateNav(element) {
   }
 }
 
+// function to update the nav on click of home button
+
+function updateNavOnHomeClick() {
+  for (let i = 0; i < totalNavList; i++) {
+    navList[i].querySelector("a").classList.remove("active");
+  }
+  document.querySelector(".nav a[href='#home']").classList.add("active");
+}
+
+document
+  .querySelector(".nav a[href='#home']")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default anchor jump
+    showSection(this); // Call the existing function to show the home section
+    updateNavOnHomeClick(); // Update navigation state to highlight the home link
+  });
+
 document.querySelector(".hire-me").addEventListener("click", function () {
   const sectionIndex = this.getAttribute("data-section-index");
   addBackSectionClass(sectionIndex);
@@ -164,7 +181,6 @@ function showSection(element) {
   }
 
   const target = element.getAttribute("href").split("#")[1];
-
   document.querySelector("#" + target).classList.add("active");
 }
 
@@ -178,6 +194,11 @@ function asideSectionTogglerBtn() {
   navTogglerBtn.classList.toggle("open");
   for (let i = 0; i < totalSection; i++) {
     allSection[i].classList.toggle("open");
+  }
+  if (aside.classList.contains("open")) {
+    document.body.classList.add("inactive"); // Add inactive class
+  } else {
+    document.body.classList.remove("inactive"); // Remove inactive class
   }
 }
 

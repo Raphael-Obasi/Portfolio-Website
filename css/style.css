@@ -14,6 +14,23 @@ body {
   font-weight: 400;
 }
 
+/* Disable scrolling and interactions when sidebar is active */
+body.inactive {
+  overflow: hidden; /* Disable scrolling */
+  pointer-events: none; /* Disable clicks */
+}
+
+/* Blur the body content when sidebar is active */
+body.inactive .main-content {
+  filter: blur(5px); /* Adjust the blur intensity */
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* Allow interaction with the aside (navigation bar) */
+body.inactive .aside {
+  pointer-events: auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -467,8 +484,8 @@ select {
 }
 
 .home .intro span {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 700;
   margin: 0;
   line-height: 22px;
   color: #504e70;
